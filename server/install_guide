@@ -1,0 +1,27 @@
+Before you execute these installation steps, check you have the next package in your system:
+- openssl development
+- postgresql
+- postgresql development (postgresql-server-dev)
+Otherwise, install them.
+
+Instructions:
+- Download MIRACL zip package (https://github.com/CertiVox/MIRACL)
+- Unzip the package in a new directory (e.g. "miracl") without keeping directory structure (unzip -j -aa -L miracl.zip)
+- From the MIRACL directory run "bash linux" command
+- Install MIRACL (official guide http://docs.miracl.com/docs/miracl/miracl-users-manual/installation). The following are the steps for my Intel Core i5 Linux 64-bit configuration, you may need to change something for different configurations:
+	- run "gcc config.c -o config"
+	- run "./config" and follow the answers given in "miracl_config_options"
+	- rename the generated file "mirdef.tst" to "mirdef.h"
+	- rename "mrmuldv.g64" to "mrmuldv.c"
+	- run "gcc -I. -fpic -c -O2 mr*.c"
+	- run "ar rc miracl.a mr*.o"
+- copy and paste "miracl.patch" in MIRACL folder
+- run "patch < miracl.patch"
+- copy and paste all the elements from the project directory to the miracl one
+- run "make" command
+- 
+
+If you have any problem, check the Makefile to be sure that the postgresql library path is correct.
+The system was implemented and tested using both postgresql and postgresql development version 9.3.
+
+Look at "READEME.md" to know how to use the wrapper.

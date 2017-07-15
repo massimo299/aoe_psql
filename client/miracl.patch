@@ -1,0 +1,561 @@
+diff -Naur miracl/ecn2.cpp miracl_new/ecn2.cpp
+--- miracl/ecn2.cpp	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/ecn2.cpp	2016-01-26 10:04:16.516054000 +0100
+@@ -120,11 +120,21 @@
+     {
+         b.get(x,y);
+  
+-        s << "(" << x << "," << y << ")";
++        s << "( " << x << " , " << y << " )";
+     }
+     return s;
+ }
+ 
++/* Input output code */
++istream& operator>>(istream& s, ECn2& b)
++{
++    ZZn2 x,y;
++    string s1,s2,s3;
++    s >> s1 >> x >> s2 >> y >> s3;
++    b.set(x,y);
++    return s;
++}
++
+ #endif
+ 
+ ECn2 operator+(const ECn2& a,const ECn2& b)
+diff -Naur miracl/ecn2.h miracl_new/ecn2.h
+--- miracl/ecn2.h	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/ecn2.h	2016-01-26 10:03:35.504054000 +0100
+@@ -183,6 +183,8 @@
+ 
+ #ifndef MR_NO_STANDARD_IO
+     friend ostream& operator<<(ostream&,const ECn2&);
++/* Input output code */
++    friend istream& operator>>(istream&, ECn2&);
+ #endif
+ 
+     ~ECn2() {
+diff -Naur miracl/ecn3.cpp miracl_new/ecn3.cpp
+--- miracl/ecn3.cpp	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/ecn3.cpp	2016-01-26 10:05:22.116056000 +0100
+@@ -235,10 +235,20 @@
+     else
+     {
+         b.get(x,y);
+-        s << "(" << x << "," << y << ")";
++        s << "( " << x << " , " << y << " )";
+     }
+     return s;
+ }
++
++/* Input output code */
++istream& operator>>(istream& s, ECn3& b)
++{
++    ZZn3 x,y;
++    string s1,s2,s3;
++    s >> s1 >> x >> s2 >> y >> s3;
++    b.set(x,y);
++    return s;
++}
+ #endif
+ 
+ ECn3 operator+(const ECn3& a,const ECn3& b)
+diff -Naur miracl/ecn3.h miracl_new/ecn3.h
+--- miracl/ecn3.h	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/ecn3.h	2016-01-26 10:05:29.284056000 +0100
+@@ -148,6 +148,8 @@
+     friend ECn3 operator*(const Big &,const ECn3&);
+ #ifndef MR_NO_STANDARD_IO
+     friend ostream& operator<<(ostream&,const ECn3&);
++/* Input output code */
++    friend istream& operator>>(istream&, ECn3&);
+ #endif
+ 
+     ~ECn3() {}
+diff -Naur miracl/ecn4.cpp miracl_new/ecn4.cpp
+--- miracl/ecn4.cpp	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/ecn4.cpp	2016-01-26 10:06:07.596057000 +0100
+@@ -158,11 +158,21 @@
+     else
+     {
+         b.get(x,y);
+-        s << "(" << x << "," << y << ")";
++        s << "( " << x << " , " << y << " )";
+     }
+     return s;
+ }
+ 
++/* Input output code */
++istream& operator>>(istream& s, ECn4& b)
++{
++    ZZn4 x,y;
++    string s1,s2,s3;
++    s >> s1 >> x >> s2 >> y >> s3;
++    b.set(x,y);
++    return s;
++}
++
+ #endif
+ 
+ ECn4 operator+(const ECn4& a,const ECn4& b)
+@@ -291,4 +301,4 @@
+ }
+ 
+ #endif
+-#endif
+\ No newline at end of file
++#endif
+diff -Naur miracl/ecn4.h miracl_new/ecn4.h
+--- miracl/ecn4.h	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/ecn4.h	2016-01-26 10:05:58.860056000 +0100
+@@ -97,6 +97,8 @@
+ 
+ #ifndef MR_NO_STANDARD_IO
+     friend ostream& operator<<(ostream&,const ECn4&);
++/* Input output code */
++    friend istream& operator>>(istream&, ECn4&);
+ #endif
+ 
+     ~ECn4() {}
+diff -Naur miracl/ecn.cpp miracl_new/ecn.cpp
+--- miracl/ecn.cpp	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/ecn.cpp	2016-01-26 10:01:38.292051000 +0100
+@@ -176,11 +176,20 @@
+     else
+     {
+         b.get(x,y);
+-        s << "(" << x << "," << y << ")";
++        s << "( " << x << " , " << y << " )";
+     }
+     return s;
+ }
+ 
++/* Input output code */
++istream& operator>>(istream& s, ECn& b)
++{
++    Big x,y;
++    string s1,s2,s3;
++    s >> s1 >> x >> s2 >> y >> s3;
++    b.set(x,y);
++    return s;
++}
+ #endif
+ 
+ #ifndef MR_NOSUPPORT_COMPRESSION
+diff -Naur miracl/ecn.h miracl_new/ecn.h
+--- miracl/ecn.h	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/ecn.h	2016-01-26 10:02:58.768053000 +0100
+@@ -144,6 +144,8 @@
+ #ifndef MR_NO_STANDARD_IO
+ 
+     friend ostream& operator<<(ostream&,const ECn&);
++/* Input output code */
++    friend istream& operator>>(istream&, ECn&);
+ 
+ #endif
+ 
+diff -Naur miracl/pairing_3.h miracl_new/pairing_3.h
+--- miracl/pairing_3.h	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/pairing_3.h	2016-01-26 10:11:35.152063000 +0100
+@@ -120,7 +120,7 @@
+ 	ECn *mtable;   // pointer to values precomputed for multiplication
+  
+ 	int mtbits;
+-    G1()   {mtable=NULL; mtbits=0;}
++    	G1()   {mtable=NULL; mtbits=0;}
+ 	G1(const G1& w) {mtable=NULL; mtbits=0; g=w.g;}
+ 
+ 	G1& operator=(const G1& w) 
+@@ -138,6 +138,13 @@
+ 	friend BOOL operator!=(const G1& x,const G1& y)
+       {if (x.g!=y.g) return TRUE; else return FALSE; }
+ 	~G1()  {if (mtable!=NULL) {delete [] mtable; mtable=NULL;}}
++
++/* Input output code */
++	friend ostream& operator<<(ostream& s,const G1& x)
++      {s << x.g; return s;}
++	friend istream& operator>>(istream& s, G1& x)
++      {s >> x.g; return s;}
++
+ };
+ 
+ //
+@@ -174,6 +181,12 @@
+ 
+ 	~G2() {if (ptable!=NULL) {delete [] ptable; ptable=NULL;}
+ 	       if (mtable!=NULL) {delete [] mtable; mtable=NULL;}}
++
++/* Input output code */
++	friend ostream& operator<<(ostream& s,const G2& x)
++      {s << x.g; return s;}
++	friend istream& operator>>(istream& s, G2& x)
++      {s >> x.g; return s;}
+ };
+ 
+ class GT
+@@ -203,6 +216,12 @@
+ 	friend BOOL operator!=(const GT& x,const GT& y)
+       {if (x.g!=y.g) return TRUE; else return FALSE; }
+ 	~GT() {if (etable!=NULL) {delete [] etable; etable=NULL;}}
++
++/* Input output code */
++	friend ostream& operator<<(ostream& s,const GT& x)
++      {s << x.g; return s;}
++	friend istream& operator>>(istream& s, GT& x)
++      {s >> x.g; return s;}
+ };
+ 
+ // pairing friendly curve class
+diff -Naur miracl/zzn12a.cpp miracl_new/zzn12a.cpp
+--- miracl/zzn12a.cpp	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn12a.cpp	2016-01-26 10:27:25.404081000 +0100
+@@ -373,9 +373,19 @@
+     ZZn12 b=xx;
+     ZZn4 x,y,z;
+     b.get(x,y,z);
+-    s << "[" << x << "," << y << "," << z << "]";
++    s << "[ " << x << " , " << y << " , " << z << " ]";
+     return s;    
+ }
+ 
++/* Input output code */
++istream& operator>>(istream& s, ZZn12& b)
++{
++    ZZn4 x,y,z;
++    string s1,s2,s3,s4;
++    s >> s1 >> x >> s2 >> y >> s3 >> z >> s4;
++    b.set(x,y,z);
++    return s;
++}
++
+ #endif
+ 
+diff -Naur miracl/zzn12a.h miracl_new/zzn12a.h
+--- miracl/zzn12a.h	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn12a.h	2016-01-26 10:27:32.596081000 +0100
+@@ -152,6 +152,8 @@
+ 
+ #ifndef MR_NO_STANDARD_IO
+     friend ostream& operator<<(ostream&,const ZZn12&);
++/* Input output code */
++    friend istream& operator>>(istream&, ZZn12&);
+ #endif
+ 
+     ~ZZn12()  {}
+diff -Naur miracl/zzn18.cpp miracl_new/zzn18.cpp
+--- miracl/zzn18.cpp	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn18.cpp	2016-01-26 10:27:39.504081000 +0100
+@@ -367,9 +367,19 @@
+     ZZn18 b=xx;
+     ZZn6 x,y,z;
+     b.get(x,y,z);
+-    s << "[" << x << "," << y << "," << z << "]";
++    s << "[ " << x << " , " << y << " , " << z << " ]";
+     return s;    
+ }
+ 
++/* Input output code */
++istream& operator>>(istream& s, ZZn18& b)
++{
++    ZZn6 x,y,z;
++    string s1,s2,s3,s4;
++    s >> s1 >> x >> s2 >> y >> s3 >> z >> s4;
++    b.set(x,y,z);
++    return s;
++}
++
+ #endif
+ 
+diff -Naur miracl/zzn18.h miracl_new/zzn18.h
+--- miracl/zzn18.h	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn18.h	2016-01-26 10:27:47.216081000 +0100
+@@ -144,6 +144,8 @@
+ 
+ #ifndef MR_NO_STANDARD_IO
+     friend ostream& operator<<(ostream&,const ZZn18&);
++/* Input output code */
++    friend istream& operator>>(istream&, ZZn18&);
+ #endif
+ 
+     ~ZZn18()  {}
+diff -Naur miracl/zzn24.cpp miracl_new/zzn24.cpp
+--- miracl/zzn24.cpp	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn24.cpp	2016-01-26 10:27:54.844082000 +0100
+@@ -368,9 +368,19 @@
+     ZZn24 b=xx;
+     ZZn8 x,y,z;
+     b.get(x,y,z);
+-    s << "[" << x << "," << y << "," << z << "]";
++    s << "[ " << x << " , " << y << " , " << z << " ]";
+     return s;    
+ }
+ 
++/* Input output code */
++istream& operator>>(istream& s, ZZn24& b)
++{
++    ZZn8 x,y,z;
++    string s1,s2,s3,s4;
++    s >> s1 >> x >> s2 >> y >> s3 >> z >> s4;
++    b.set(x,y,z);
++    return s;
++}
++
+ #endif
+ 
+diff -Naur miracl/zzn24.h miracl_new/zzn24.h
+--- miracl/zzn24.h	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn24.h	2016-01-26 10:28:01.488082000 +0100
+@@ -141,6 +141,8 @@
+ 
+ #ifndef MR_NO_STANDARD_IO
+     friend ostream& operator<<(ostream&,const ZZn24&);
++/* Input output code */
++    friend istream& operator>>(istream&, ZZn24&);
+ #endif
+ 
+     ~ZZn24()  {}
+diff -Naur miracl/zzn2.cpp miracl_new/zzn2.cpp
+--- miracl/zzn2.cpp	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn2.cpp	2016-01-26 10:23:20.352076000 +0100
+@@ -431,9 +431,19 @@
+     ZZn2 b=xx;
+     Big x,y;
+     b.get(x,y);
+-    s << "[" << x << "," << y << "]";
++    s << "[ " << x << " , " << y << " ]";
+     return s;    
+ }
+ 
++/* Input output code */
++istream& operator>>(istream& s, ZZn2& b)
++{
++    Big x,y;
++    string s1,s2,s3;
++    s >> s1 >> x >> s2 >> y >> s3;
++    b.set(x,y);
++    return s;
++}
++
+ #endif
+ 
+diff -Naur miracl/zzn2.h miracl_new/zzn2.h
+--- miracl/zzn2.h	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn2.h	2016-01-26 10:23:30.036077000 +0100
+@@ -158,6 +158,8 @@
+ 
+ #ifndef MR_NO_STANDARD_IO
+     friend ostream& operator<<(ostream&,const ZZn2&);
++/* Input output code */
++    friend istream& operator>>(istream&, ZZn2&);
+ #endif
+ 
+     zzn2* getzzn2(void) const;
+diff -Naur miracl/zzn3.cpp miracl_new/zzn3.cpp
+--- miracl/zzn3.cpp	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn3.cpp	2016-01-26 10:23:51.232077000 +0100
+@@ -387,9 +387,18 @@
+     ZZn3 b=xx;
+     ZZn x,y,z;
+     b.get(x,y,z);
+-    s << "[" << x << "," << y << "," << z << "]";
++    s << "[ " << x << " , " << y << " , " << z << " ]";
+     return s;    
+ }
+ 
++/* Input output code */
++istream& operator>>(istream& s, ZZn3& b)
++{
++    ZZn x,y,z;
++    string s1,s2,s3,s4;
++    s >> s1 >> x >> s2 >> y >> s3 >> z >> s4;
++    b.set(x,y,z);
++    return s;
++}
+ #endif
+ 
+diff -Naur miracl/zzn3.h miracl_new/zzn3.h
+--- miracl/zzn3.h	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn3.h	2016-01-26 10:24:01.900077000 +0100
+@@ -152,6 +152,8 @@
+ 
+ #ifndef MR_NO_STANDARD_IO
+     friend ostream& operator<<(ostream&,const ZZn3&);
++/* Input output code */
++    friend istream& operator>>(istream&, ZZn3&);
+ #endif
+ 
+     ~ZZn3()      
+diff -Naur miracl/zzn4.cpp miracl_new/zzn4.cpp
+--- miracl/zzn4.cpp	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn4.cpp	2016-01-26 10:24:09.748077000 +0100
+@@ -474,9 +474,19 @@
+     ZZn4 b=xx;
+     ZZn2 x,y;
+     b.get(x,y);
+-    s << "[" << x << "," << y << "]";
++    s << "[ " << x << " , " << y << " ]";
+     return s;    
+ }
+ 
++/* Input output code */
++istream& operator>>(istream& s, ZZn4& b)
++{
++    ZZn2 x,y;
++    string s1,s2,s3;
++    s >> s1 >> x >> s2 >> y >> s3;
++    b.set(x,y);
++    return s;
++}
++
+ #endif
+ 
+diff -Naur miracl/zzn4.h miracl_new/zzn4.h
+--- miracl/zzn4.h	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn4.h	2016-01-26 10:24:17.008077000 +0100
+@@ -179,6 +179,8 @@
+ 
+ #ifndef MR_NO_STANDARD_IO
+     friend ostream& operator<<(ostream&,const ZZn4&);
++/* Input output code */
++    friend istream& operator>>(istream&, ZZn4&);
+ #endif
+ 
+     ~ZZn4()  
+diff -Naur miracl/zzn6a.cpp miracl_new/zzn6a.cpp
+--- miracl/zzn6a.cpp	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn6a.cpp	2016-01-26 10:26:52.704080000 +0100
+@@ -539,9 +539,19 @@
+     ZZn6 b=xx;
+     ZZn2 x,y,z;
+     b.get(x,y,z);
+-    s << "[" << x << "," << y << "," << z << "]";
++    s << "[ " << x << " , " << y << " , " << z << " ]";
+     return s;    
+ }
+ 
++/* Input output code */
++istream& operator>>(istream& s, ZZn6& b)
++{
++    ZZn2 x,y,z;
++    string s1,s2,s3,s4;
++    s >> s1 >> x >> s2 >> y >> s3 >> z >> s4;
++    b.set(x,y,z);
++    return s;
++}
++
+ #endif
+ 
+diff -Naur miracl/zzn6a.h miracl_new/zzn6a.h
+--- miracl/zzn6a.h	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn6a.h	2016-01-26 10:26:59.364081000 +0100
+@@ -166,6 +166,8 @@
+ 
+ #ifndef MR_NO_STANDARD_IO
+     friend ostream& operator<<(ostream&,const ZZn6&);
++/* Input output code */
++    friend istream& operator>>(istream&, ZZn6&);
+ #endif
+ 
+     ~ZZn6()  {}
+diff -Naur miracl/zzn6.cpp miracl_new/zzn6.cpp
+--- miracl/zzn6.cpp	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn6.cpp	2016-01-26 10:24:24.520078000 +0100
+@@ -484,9 +484,19 @@
+     ZZn6 b=xx;
+     ZZn3 x,y;
+     b.get(x,y);
+-    s << "[" << x << "," << y << "]";
++    s << "[ " << x << " , " << y << " ]";
+     return s;    
+ }
+ 
++/* Input output code */
++istream& operator>>(istream& s, ZZn6& b)
++{
++    ZZn3 x,y;
++    string s1,s2,s3;
++    s >> s1 >> x >> s2 >> y >> s3;
++    b.set(x,y);
++    return s;
++}
++
+ #endif
+ 
+diff -Naur miracl/zzn6.h miracl_new/zzn6.h
+--- miracl/zzn6.h	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn6.h	2016-01-26 10:26:44.292080000 +0100
+@@ -161,6 +161,8 @@
+ 
+ #ifndef MR_NO_STANDARD_IO
+     friend ostream& operator<<(ostream&,const ZZn6&);
++/* Input output code */
++    friend istream& operator>>(istream&, ZZn6&);
+ #endif
+ 
+     ~ZZn6()  {}
+diff -Naur miracl/zzn8.cpp miracl_new/zzn8.cpp
+--- miracl/zzn8.cpp	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn8.cpp	2016-01-26 10:27:07.472081000 +0100
+@@ -413,9 +413,19 @@
+     ZZn8 b=xx;
+     ZZn4 x,y;
+     b.get(x,y);
+-    s << "[" << x << "," << y << "]";
++    s << "[ " << x << " , " << y << " ]";
+     return s;    
+ }
+ 
++/* Input output code */
++istream& operator>>(istream& s, ZZn8& b)
++{
++    ZZn4 x,y;
++    string s1,s2,s3;
++    s >> s1 >> x >> s2 >> y >> s3;
++    b.set(x,y);
++    return s;
++}
++
+ #endif
+ 
+diff -Naur miracl/zzn8.h miracl_new/zzn8.h
+--- miracl/zzn8.h	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn8.h	2016-01-26 10:27:17.004081000 +0100
+@@ -149,6 +149,8 @@
+ 
+ #ifndef MR_NO_STANDARD_IO
+     friend ostream& operator<<(ostream&,const ZZn8&);
++/* Input output code */
++    friend istream& operator>>(istream&, ZZn8&);
+ #endif
+ 
+     ~ZZn8()  {}
+diff -Naur miracl/zzn.cpp miracl_new/zzn.cpp
+--- miracl/zzn.cpp	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn.cpp	2016-01-26 10:22:14.136075000 +0100
+@@ -189,4 +189,13 @@
+     return s;    
+ }
+ 
++/* Input output code */
++istream& operator>>(istream& s, ZZn& b)
++{
++    Big x;
++    s >> x;
++    b = (ZZn)x;
++    return s;
++}
++
+ #endif
+diff -Naur miracl/zzn.h miracl_new/zzn.h
+--- miracl/zzn.h	2015-11-06 14:00:34.000000000 +0100
++++ miracl_new/zzn.h	2016-01-26 10:22:54.372076000 +0100
+@@ -189,6 +189,8 @@
+ 
+ #ifndef MR_NO_STANDARD_IO
+     friend ostream& operator<<(ostream&,const ZZn&);
++/* Input output code */
++    friend istream& operator>>(istream&, ZZn&);
+ #endif
+ 
+ 

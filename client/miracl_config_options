@@ -1,0 +1,152 @@
+This program attempts to generate a mirdef.h file from your
+responses to some simple questions, and by some internal tests
+of its own.
+
+The most fundamental decision is that of the 'underlying type'
+that is the C data type to be used to store each digit of a
+big number. You input the number of bits in this type, and 
+this program finds a suitable candidate (usually short, int or 
+long). Typical values would be 16, 32 or perhaps 64. 
+The bigger the better, but a good starting point would be to
+enter the native wordlength of your computer
+
+For your information:-
+The size of a char  is 8 bits
+The size of a short is 16 bits
+The size of an int  is 32 bits
+The size of a long  is 64 bits
+The size of a double is 64 bits, its mantissa is 53 bits
+The size of a long double is 128 bits, its mantissa is 64 bits
+
+    Little-endian processor detected
+
+A double can be used as the underlying type. In rare circumstances
+ this may be optimal. NOT recommended!
+
+Do you wish to use a double as the underlying type? (Y/N)?n
+
+Now enter number of bits in underlying type= 64
+
+    underlying type is a long
+    32 bit unsigned type is an unsigned int
+    64 bit unsigned type is an unsigned long
+
+Does compiler support a 128 bit integer type? (Y/N)?n
+
+For very constrained environments it is possible to build a version of MIRACL
+which does not require a heap. Not recommended for beginners.
+Some routines are not available in this mode and the max length of Big
+variables is fixed at compile time
+Do you want a no-heap version of the MIRACL C library? (Y/N)? n
+
+Do you want support for flash arithmetic? (Y/N)?y
+Do you want stripped-down version (smaller - no error messages) (Y/N)?n
+Do you want multi-threaded version of MIRACL
+Not recommended for program development - read the manual (Y/N)?y
+Do you want generic portable threading support (C only - No C++) (Y/N)?n
+Do you want multi-threaded support for C++ in MS Windows (Y/N)?n
+Do you want multi-threaded support for C++ in Unix (Y/N)?y
+Does your development environment support standard screen/keyboard I/O?
+(It doesn't for example in MS Windows, and embedded applications)
+If in doubt, answer Yes (Y/N)?y
+Does your development environment support standard file I/O?
+(It doesn't for example in an embedded application)
+If in doubt, answer Yes (Y/N)?y
+
+
+Do you for some reason NOT want to use a full-width number base?
+
+You may not if your processor instruction set does not support
+64-bit UNSIGNED multiply and divide instructions.
+If NOT then a full-width number base will be difficult and 
+slow to implement, which is a pity, because its normally faster
+If for some other reason you don't want to use a full-width
+number base, (abnormal handling of integer overflow or no muldvd()
+/muldvd2()/muldvm() available?), answer Yes
+If in doubt answer No
+
+Answer (Y/N)?n
+
+Always using a power-of-2 (or 0) as a number base reduces code space
+and will also be a little faster. This is recommended.
+
+Will all of your programs use a power-of-2 as a number base (Y/N)?n
+
+Do you want to create a Comba fixed size multiplier
+for binary polynomial multiplication. This requires that
+your processor supports a special binary multiplication instruction
+which it almost certainly does not....
+Useful particularly for Elliptic Curve cryptosystems over GF(2^m).
+
+Default to No. Answer (Y/N)?n
+
+Do you wish to use the Karatsuba/Comba/Montgomery method
+for modular arithmetic - as used by exponentiation
+cryptosystems like RSA.
+This method is probably fastest om most processors which
+which support unsigned mul and a carry flag
+NOTE: your compiler must support in-line assembly,
+and you must be able to supply a suitable .mcs file
+like, for example, ms86.mcs for pentium processors
+
+Answer (Y/N)?n
+
+Do you want to create a Comba fixed size modular
+multiplier, for faster modular multiplication with
+smaller moduli. Can generate a lot of code 
+Useful particularly for Elliptic Curve cryptosystems over GF(p).
+
+Answer (Y/N)?n
+
+Do you want to save space by using a smaller but slightly slower 
+AES implementation. Default to No. (Y/N)?n
+
+Do you want to use Edwards paramaterization of elliptic curves over Fp
+This is faster for basic Elliptic Curve cryptography (but does not support
+Pairing-based Cryptography and some applications). Default to No. (Y/N)?n
+
+Do you want to save space by using only affine coordinates 
+for elliptic curve cryptography. Default to No. (Y/N)?n
+
+Do you want to save space by not using point compression 
+for EC(p) elliptic curve cryptography. Default to No. (Y/N)?n
+
+Do you want to save space by not supporting special code 
+for EC double-addition, as required for ECDSA signature 
+verification, or any multi-addition of points. Default to No. (Y/N)?n
+
+Do you want to save RAM by using a smaller sliding window 
+for all elliptic curve cryptography. Default to No. (Y/N)?n
+
+Do you want to save some space by supressing Lazy Reduction? 
+(as used for ZZn2 arithmetic). Default to No. (Y/N)?n
+
+Do you NOT want to use the built in random number generator?
+Removing it saves space, and maybe you have your own source
+of randomness? Default to No. (Y/N)?n
+
+Do you want to save space by NOT supporting KOBLITZ curves 
+for EC(2^m) elliptic curve cryptography. Default to No. (Y/N)?n
+
+Do you want to save space by NOT supporting SUPERSINGULAR curves 
+for EC(2^m) elliptic curve cryptography. Default to No. (Y/N)?n
+
+Do you want to enable a Double Precision big type. See doubig.txt
+for more information. Default to No. (Y/N)?n
+
+Do you want to compile MIRACL as a C++ library, rather than a C library?
+Default to No. (Y/N)?n
+
+Do you want to avoid the use of compiler intrinsics?
+Default to No. (Y/N)?n
+
+You must now provide an assembly language file mrmuldv.c,
+containing implementations of muldiv(), muldvd(), muldvd2() and muldvm()
+Check mrmuldv.any - an assembly language version may be
+there already
+
+A file mirdef.tst has been generated. If you are happy with it,
+rename it to mirdef.h and use for compiling the MIRACL library.
+A file miracl.lst has been generated that includes all the 
+files to be included in this build of the MIRACL library.
+
